@@ -12,6 +12,7 @@ dotfiles for my arch linux setup
 - monospace font: **fira code**
 - editor: **neovim** / **vscodium**
 - file manager: **thunar**
+- browser: **librewolf**
 - mpd client: **ncmpcpp**
 - top: **btop**
 
