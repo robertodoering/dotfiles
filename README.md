@@ -5,6 +5,7 @@ dotfiles for my arch linux setup
 - wm: **bpswm**
 - bar: **polybar**
 - terminal: **alacritty**
+- shell: **zsh**
 - application launcher: **rofi**
 - notification manager: **dunst**
 - compositor: **picom** ([fork with blur & rounded borders](https://aur.archlinux.org/packages/picom-ibhagwan-git))
@@ -13,6 +14,7 @@ dotfiles for my arch linux setup
 - editor: **neovim** / **vscodium**
 - file manager: **thunar**
 - browser: **librewolf**
+- pdf reader: **zathura**
 - mpd client: **ncmpcpp**
 - top: **btop**
 
