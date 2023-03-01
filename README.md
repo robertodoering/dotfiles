@@ -8,7 +8,7 @@ dotfiles for my arch linux setup
 - application launcher: **rofi**
 - notification manager: **dunst**
 - compositor: **picom** ([fork with blur & rounded borders](https://aur.archlinux.org/packages/picom-ibhagwan-git))
-- serif font: **noto sans**
+- sans-serif font: **noto sans**
 - monospace font: **fira code**
 - editor: **neovim** / **vscodium**
 - file manager: **thunar**
