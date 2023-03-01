@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# user autostart
+pgrep -x sxhkd || sxhkd &
+pgrep bspswallow.sh || bspswallow.sh &
+pgrep lxsession ||lxsession &
+
+# set keyboard layout variant
+setxkbmap us de_se_fi &
+
+xsetroot -cursor_name left_ptr &
+
+# screen lock
+xset s 300 5 &
+xss-lock -n /usr/lib/xsecurelock/saver_blank -l -- \
+  env XSECURELOCK_DISCARD_FIRST_KEYPRESS=0 \
+  XSECURELOCK_PASSWORD_PROMPT=time_hex \
+  XSECURELOCK_COMPOSITE_OBSCURER=0 \
+  XSECURELOCK_SHOW_HOSTNAME=0 \
+  XSECURELOCK_SHOW_USERNAME=0 \
+  XSECURELOCK_FONT=comfortaa \
+  XSECURELOCK_KEY_XF86AudioPlay_COMMAND="playerctl play-pause || mpc toggle" \
+  XSECURELOCK_KEY_XF86AudioPause_COMMAND="playerctl play-pause || mpc toggle" \
+  XSECURELOCK_KEY_XF86AudioNext_COMMAND="playerctl next || mpc next" \
+  XSECURELOCK_KEY_XF86AudioPrev_COMMAND="playerctl previous || mpc prev" \
+  xsecurelock &
+
+# setup monitors
+monitor_setup.sh
+
+# setup status bar
+launch_polybar.sh &
+
+bspc config focused_border_color      "#458588"
+bspc config active_border_color       "#1d2021"
+bspc config presel_feedback_color     "#1d2021"
+bspc config normal_border_color       "#1d2021"
+bspc config border_width              2
+bspc config window_gap                0
+bspc config split_ratio               0.5
+
+bspc config pointer_motion_interval   50
+bspc config focus_follows_pointer     true
+bspc config pointer_follows_focus     false
+bspc config pointer_follows_monitor   true
+
+bspc config remove_disabled_monitors  false
+bspc config remove_unplugged_monitors false
+
+bspc config borderless_monocle        true
+bspc config gapless_monocle           true
+bspc config single_monocle            true
+
+bspc config external_rules_command ~/.config/bspwm/external_rules.sh
+
+# autostart layouts
+$HOME/.config/bspwm/layouts/music_layout.sh

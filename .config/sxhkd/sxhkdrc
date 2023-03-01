@@ -1,0 +1,122 @@
+#
+# bspwm keybinds
+#
+
+# common apps
+super + Return
+  $TERMINAL
+super + p
+  rofi -show drun
+super + r
+  rofi -show run
+super + b
+  librewolf
+super + f
+  thunar
+super + c
+  code.sh
+super + v
+  rofi -modi "clipboard:greenclip print" -show "clipboard" -run-command '{cmd}'
+super + m
+  $TERMINAL -e pulsemixer
+super + n
+  obsidian
+super + t
+  dart $HOME/data/dev/dart-twitch/bin/main.dart
+
+super + shift + b
+  bluetooth_connect.sh
+super + shift + n
+  $HOME/data/dev/bg/play.sh
+super + shift + s
+  screen_capture.sh
+
+# system & wm
+super + shift + q
+  shutdown_prompt.sh
+super + shift + r
+  bspc wm -r
+super + shift + c
+  pkill -USR1 -x sxhkd
+
+
+# media
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@   +3%
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@   -3%
+XF86AudioMute
+  pactl set-sink-mute   @DEFAULT_SINK@   toggle
+XF86AudioMicMute
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+XF86AudioPlay
+  playerctl play-pause || mpc toggle
+XF86AudioPause
+  playerctl play-pause || mpc toggle
+XF86AudioNext
+  playerctl next       || mpc next
+XF86AudioPrev
+  playerctl previous   || mpc prev
+
+
+# close focused window
+super + w
+  bspc node -c
+
+
+# set the window state
+super + {s,button2,a}
+  bspc node -t {tiled,floating,fullscreen}
+
+
+# resize node
+super + ctrl + shift + h
+  bspc node --resize right -50 0 || bspc node --resize left -50 0
+super + ctrl + shift + j
+  bspc node --resize top 0 50 || bspc node --resize bottom 0 50
+super + ctrl + shift + k
+  bspc node --resize top 0 -50 || bspc node --resize bottom 0 -50
+super + ctrl + shift + l
+  bspc node --resize right 50 0 || bspc node --resize left 50 0
+
+
+#
+# focus / move nodes & desktops
+#
+
+# focus node / swap node / move node in the given direction
+super + h
+  bspc node --focus west || bspc monitor --focus west
+
+super + j
+  bspc node --focus south || bspc monitor --focus south --follow
+
+super + k
+  bspc node --focus north || bspc monitor --focus north --follow
+
+super + l
+  bspc node --focus east || bspc monitor --focus east
+
+super + {shift, control} {h,j,k,l}
+  bspc node {--swap, --to-monitor} {west, south, north, east} --follow
+
+
+# focus the next/previous desktop in the current monitor
+super + alt + {h,l}
+  bspc desktop --focus {prev,next}.local
+
+
+# focus the next / previous node
+super + {_, shift + }Tab
+  bspc node {next, prev} --focus
+
+
+# focus the given desktop
+super + {1-9}
+  bspc desktop -f 'pointed:^{1-9}'
+
+
+# move focused node to desktop
+super + shift + {1-9}
+  bspc node -d 'pointed:^{1-9}' --follow

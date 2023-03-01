@@ -1,0 +1,59 @@
+set selection-clipboard clipboard
+set adjust-open "best-fit"
+#set sandbox strict
+
+# one page per row by default
+set pages-per-row 1
+
+# stop at page boundries
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+
+set font "noto sans 10"
+
+set notification-error-bg       "#cc241d" # Red
+set notification-error-fg       "#ebdbb2" # Foreground
+set notification-warning-bg     "#d79921" # Orange
+set notification-warning-fg     "#1d2021" # Selection
+set notification-bg             "#1d2021" # Background
+set notification-fg             "#ebdbb2" # Foreground
+
+set completion-bg               "#1d2021" # Background
+set completion-fg               "#689d6a" # Comment
+set completion-group-bg         "#1d2021" # Background
+set completion-group-fg         "#689d6a" # Comment
+set completion-highlight-bg     "#1d2021" # Selection
+set completion-highlight-fg     "#ebdbb2" # Foreground
+
+set index-bg                    "#1d2021" # Background
+set index-fg                    "#ebdbb2" # Foreground
+set index-active-bg             "#1d2021" # Current Line
+set index-active-fg             "#ebdbb2" # Foreground
+
+set inputbar-bg                 "#1d2021" # Background
+set inputbar-fg                 "#ebdbb2" # Foreground
+set statusbar-bg                "#1d2021" # Background
+set statusbar-fg                "#ebdbb2" # Foreground
+
+set highlight-color             "#458588" # Orange
+set highlight-active-color      "#83a598" # Blue
+
+set default-bg                  "#1d2021" # Background
+set default-fg                  "#ebdbb2" # Foreground
+
+set render-loading              true
+set render-loading-fg           "#1d2021" # Background
+set render-loading-bg           "#ebdbb2" # Foreground
+
+#
+# Recolor mode settings
+#
+
+set recolor-lightcolor          "#1d2021" # Background
+set recolor-darkcolor           "#ebdbb2" # Foreground
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor true

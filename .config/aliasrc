@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# navigation
+alias ..='cd ..'
+alias home="cd ~"
+
+# list files
+alias ls="exa -laF --icons --time modified --time-style long-iso --sort name --group-directories-first --git"
+alias ll="exa -a --icons --sort name --group-directories-first"  # grid format
+alias lt="exa -T --icons --sort name --group-directories-first" # tree format
+
+# colorize grep output
+alias grep='grep --color=auto'
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# pacman
+alias orphans="pacman -Qdtq"
+alias remove-orphans="pacman -Qdtq | sudo pacman -Rs -"
+alias clear-cache="paru -Scc"
+
+# git
+alias g="git"
+alias gs="git status"
+alias ga="git commit -a"
+
+# flutter
+alias f="flutter"
+alias fget="flutter pub get"
+alias frun="flutter pub get && flutter pub run build_runner build"
+alias fwatch="flutter pub get && flutter pub run build_runner watch"
+alias frund="flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs"
+alias fwatchd="flutter pub get && flutter pub run build_runner watch --delete-conflicting-outputs"
+
+# misc
+alias sudo="doas " # allows using aliases with sudo (e.g. sudo vim)
+alias doas="doas "
+alias vim="nvim"
+alias neovide="neovide --multigrid"
+alias locate="plocate"
+alias untar="tar -xf"
+alias sxiv="sxiv -b -s f"
+alias slideshow="sxiv -b -s f -S 5"
+alias nitrogen="nitrogen --force-setter=xinerama"
+alias wine32="WINEARCH=win32 WINEPREFIX=~/.local/share/wineprefixes/win32 wine"
+alias winetricks32="WINEARCH=win32 WINEPREFIX=~/.local/share/wineprefixes/win32 winetricks"
+alias proton="/home/rby/.local/share/Steam/steamapps/common/Proton\ \-\ Experimental/files/bin/wine"
+
+alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+alias lofi="mpv 'https://www.youtube.com/watch?v=jfKfPfyJRdk' --no-video"
+alias lofi2="mpv 'https://www.youtube.com/watch?v=rUxyKA_-grg' --no-video"

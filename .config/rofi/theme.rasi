@@ -1,0 +1,96 @@
+* {
+    background: #1d2021;
+    foreground: #ebdbb2;
+    accent:     #83a598;
+    urgent:     #fb4934;
+
+    background-color: @background;
+    foreground-color: @foreground;
+}
+
+window {
+    //location:         center;
+    //y-offset:         -5%;
+    //max-height:       60%;
+    border: 2;
+    border-radius: 0;
+    border-color: @accent;
+}
+
+mainbox {
+
+}
+
+inputbar {
+    padding: 8;
+}
+
+prompt {
+    spacing:    0;
+    padding:    0 16 0 12;
+    text-color: @foreground;
+    font: "firacode nerd font 18";
+}
+
+entry {
+    spacing:    0;
+    text-color: @foreground;
+    padding: 4 0 0 0;
+    font: "comfortaa 14";
+}
+
+listview {
+    fixed-height: false;
+    spacing:      0;
+    padding:      0;
+    scrollbar:    false;
+}
+element {
+    border:  0;
+    padding: 8;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: inherit;
+    size: 1em;
+    padding: 0 16 0 8;
+}
+element.normal.normal {
+    background-color: @background;
+    text-color:       @foreground;
+}
+element.normal.urgent {
+    background-color: @urgent;
+    text-color:       @foreground;
+}
+element.normal.active {
+    background-color: @accent;
+    text-color:       @background;
+}
+element.selected.normal {
+    background-color: @accent;
+    text-color:       @background;
+}
+element.selected.urgent {
+    background-color: @urgent;
+    text-color:       @foreground;
+}
+element.selected.active {
+    background-color: @accent;
+    text-color:       @foreground;
+}
+element.alternate.normal {
+    background-color: @background;
+    text-color:       @foreground;
+}
+element.alternate.urgent {
+    background-color: @background;
+    text-color:       @foreground;
+}
+element.alternate.active {
+    background-color: @background;
+    text-color:       @foreground;
+}

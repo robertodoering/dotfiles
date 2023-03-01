@@ -1,0 +1,174 @@
+{
+	"from json": {
+		"prefix": "json",
+		"scope": "dart",
+		"body": "factory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);"
+	},
+	"part of .g.dart": {
+		"prefix": "pofg",
+		"scope": "dart",
+		"body": "part '$TM_FILENAME_BASE.g.dart';"
+	},
+	"part of .freezed.dart": {
+		"prefix": "poff",
+		"scope": "dart",
+		"body": "part '$TM_FILENAME_BASE.freezed.dart';"
+	},
+	"media query": {
+		"prefix": "mqof",
+		"scope": "dart",
+		"body": "final mediaQuery = MediaQuery.of(context);"
+	},
+	"theme": {
+		"prefix": "thof",
+		"scope": "dart",
+		"body": "final theme = Theme.of(context);"
+	},
+	"l10n": {
+		"prefix": "l10n",
+		"scope": "dart",
+		"body": [
+			"final l10n = Localizations.of<MaterialLocalizations>(",
+			"  context,",
+			"  MaterialLocalizations,",
+			")!;"
+		]
+	},
+	"stateless widget": {
+		"scope": "dart",
+		"prefix": "stless",
+		"body": [
+			"class $1 extends StatelessWidget {",
+			"  const $1();",
+			"",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return const SizedBox();$2",
+			"  }",
+			"}"
+		]
+	},
+	"stateless widget with key": {
+		"scope": "dart",
+		"prefix": "stlessKey",
+		"body": [
+			"class $1 extends StatelessWidget {",
+			"  const $1({",
+			"    super.key,",
+			"  });",
+			"",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return const SizedBox();$2",
+			"  }",
+			"}"
+		]
+	},
+	"stateful widget": {
+		"scope": "dart",
+		"prefix": "stful",
+		"body": [
+			"class $1 extends StatefulWidget {",
+			"  const $1();",
+			"",
+			"  @override",
+			"  State<$1> createState() => _$1State();",
+			"}",
+			"",
+			"class _$1State extends State<$1> {",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return const SizedBox();$2",
+			"  }",
+			"}"
+		]
+	},
+	"stateful widget with key": {
+		"scope": "dart",
+		"prefix": "stful",
+		"body": [
+			"class $1 extends StatefulWidget {",
+			"  const $1({",
+			"    super.key,",
+			"  });",
+			"",
+			"  @override",
+			"  State<$1> createState() => _$1State();",
+			"}",
+			"",
+			"class _$1State extends State<$1> {",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return const SizedBox();$2",
+			"  }",
+			"}"
+		]
+	},
+	"consumer widget": {
+		"scope": "dart",
+		"prefix": "stlessConsumer",
+		"body": [
+			"class $1 extends ConsumerWidget {",
+			"  const $1();",
+			"",
+			"  @override",
+			"  Widget build(BuildContext context, WidgetRef ref) {",
+			"    return const SizedBox();$2",
+			"  }",
+			"}"
+		]
+	},
+	"consumer stateful widget": {
+		"scope": "dart",
+		"prefix": "stfulConsumer",
+		"body": [
+			"class $1 extends ConsumerStatefulWidget {",
+			"  const $1();",
+			"",
+			"  @override",
+			"  ConsumerState<$1> createState() => _$1State();",
+			"}",
+			"",
+			"class _$1State extends ConsumerState<$1> {",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return const SizedBox();$2",
+			"  }",
+			"}"
+		]
+	},
+	"provider": {
+		"scope": "dart",
+		"prefix": "provider",
+		"body": [
+			"final $1 = Provider(",
+			"  (ref) => $2,",
+			"  name: '${1/(.*)/${1:/capitalize}/}',",
+			");"
+		]
+	},
+	"state provider": {
+		"scope": "dart",
+		"prefix": "stateProvider",
+		"body": [
+			"final $1 = StateProvider(",
+			"  (ref) => $2,",
+			"  name: '${1/(.*)/${1:/capitalize}/}',",
+			");"
+		]
+	},
+	"state notifier provider": {
+		"scope": "dart",
+		"prefix": "stateNotifierProvider",
+		"body": [
+			"final $1 = StateNotifierProvider<$2, $3>(",
+			"  (ref) => $2(),",
+			"  name: '${1/(.*)/${1:/capitalize}/}',",
+			");",
+			"",
+			"class $2 extends StateNotifier<$3> {",
+			"  $2() : super(null);",
+			"}"
+		]
+	}
+}
