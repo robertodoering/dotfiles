@@ -1,0 +1,174 @@
+{
+    "editor.cursorSurroundingLines": 10,
+    "editor.fontFamily": "'fira code',  'firacode nerd font', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 12.5,
+    "editor.hover.delay": 600,
+    "editor.inlineSuggest.enabled": true,
+    "editor.minimap.enabled": false,
+    "editor.quickSuggestionsDelay": 0,
+    "editor.renderWhitespace": "none",
+    "editor.scrollBeyondLastLine": true,
+    "editor.stickyScroll.enabled": true,
+    "editor.suggest.filterGraceful": true,
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.preview": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "editor.tabSize": 2,
+    "explorer.compactFolders": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "security.workspace.trust.enabled": false,
+    "window.customMenuBarAltFocus": false,
+    "window.enableMenuBarMnemonics": false,
+    "window.menuBarVisibility": "hidden",
+    "window.restoreWindows": "none",
+    "workbench.activityBar.visible": false,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.editor.tabCloseButton": "off",
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.wrapTabs": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/bin/zsh",
+            "args": [ "-l", "-i" ]
+        }
+    },
+
+    // themes
+    "editor.tokenColorCustomizations": {
+        "[Gruvbox Dark Hard]": {
+            "textMateRules": [
+                {
+                    "scope": "support.class",
+                    "settings": {
+                        "foreground": "#83a598"
+                    }
+                },
+                {
+                    "scope": "comment",
+                    "settings": {
+                        // prevent italic comments
+                        "fontStyle": ""
+                    }
+                }
+            ]
+        },
+    },
+    "workbench.colorCustomizations": {
+        "[Gruvbox Dark Hard]": {
+            "statusBar.debuggingBackground": "#385549",
+            "statusBar.debuggingForeground": "#ebdbb2",
+            "peekViewEditor.matchHighlightBackground": "#385549"
+        },
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
+
+    // misc
+    "files.associations": {
+        "config": "ini"
+    },
+    "files.autoSave": "onWindowChange",
+    "git.autoRepositoryDetection": false,
+    "git.ignoreLimitWarning": true,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "search.followSymlinks": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "update.mode": "none",
+
+    // dart & flutter
+    "dart.closingLabels": false,
+    "dart.debugExternalPackageLibraries": true,
+    "dart.debugSdkLibraries": true,
+    "dart.flutterSdkPath": "/home/rby/.local/share/flutter/",
+    "dart.promptToGetPackages": false,
+    "dart.showInspectorNotificationsForWidgetErrors": false,
+    "dart.showSkippedTests": false,
+    "dart.warnWhenEditingFilesOutsideWorkspace": false,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        // "editor.formatOnType": true,
+        "editor.formatOnPaste": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.semanticHighlighting.enabled": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false,
+        "rewrap.autoWrap.enabled": true,
+        "editor.codeActionsOnSave": [
+            "source.organizeImports",
+            // "source.fixAll",
+        ],
+    },
+
+    // language settings
+    "[rust]": {
+        "editor.formatOnSave": true
+
+    },
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "rust-analyzer.inlayHints.expressionAdjustmentHints.hideOutsideUnsafe": true,
+    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+
+    "Lua.format.defaultConfig": {
+        "indent_style": "space",
+        "quote_style": "double",
+        "indent_size": "2",
+        "continuation_indent_size": "2"
+    },
+    "Lua.telemetry.enable": false,
+
+    // vim
+    "vscode-neovim.mouseSelectionStartVisualMode": true,
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vim.useSystemClipboard": true,
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-w>": false,
+        "<C-b>" : false,
+        "<C-f>" : false,
+    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "silent": true,
+            "before": ["<leader>", "c"],
+            "commands": ["editor.action.commentLine"]
+        },
+        {
+            "silent": true,
+            "before": ["<leader>", "f"],
+            "commands": ["editor.action.formatDocument"]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "silent": true,
+            "before": ["<leader>", "c"],
+            "commands": ["editor.action.commentLine"]
+        }
+    ],
+    
+    // other
+    "cSpell.allowCompoundWords": true,
+    "cSpell.diagnosticLevel": "Hint",
+    "cSpell.language": "en,en-US",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "extensions.ignoreRecommendations": true,
+    "xmlTools.splitAttributesOnFormat": true,
+    "editor.lineNumbers": "relative",
+    "dart.runPubGetOnPubspecChanges": "never",
+    "editor.lineHeight": 1.28,
+    "workbench.list.smoothScrolling": true,
+    "editor.smoothScrolling": true,
+}
