@@ -85,3 +85,8 @@ nmap("<leader>dk", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
 nmap("<leader>dj", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
 nmap("<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>")
 nmap("<leader>f", "<cmd>lua vim.lsp.buf.formatting()<cr>")
+
+-- vs code
+if vim.g.vscode then
+  nmap("gd", "<cmd>call VSCodeNotify('editor.action.revealDefinition')<cr>")
+end

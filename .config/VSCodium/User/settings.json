@@ -23,7 +23,6 @@
     "window.enableMenuBarMnemonics": false,
     "window.menuBarVisibility": "hidden",
     "window.restoreWindows": "none",
-    "workbench.activityBar.visible": false,
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.editor.tabCloseButton": "off",
     "workbench.editor.tabSizing": "shrink",
@@ -171,4 +170,5 @@
     "editor.lineHeight": 1.28,
     "workbench.list.smoothScrolling": true,
     "editor.smoothScrolling": true,
+    "workbench.activityBar.visible": false,
 }

@@ -20,6 +20,7 @@ set.updatetime = 200
 set.iskeyword:append("-") -- treat dash separated words as a single word
 set.showmode = false -- hide mode text
 set.hidden = false -- unload hidden buffers
+set.autochdir = true --
 
 -- search
 set.hlsearch = false

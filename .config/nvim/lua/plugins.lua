@@ -57,9 +57,6 @@ packer.startup(function()
   -- greeter
   use { "goolord/alpha-nvim", requires = "kyazdani42/nvim-web-devicons" }
 
-  -- session manager
-  use { "Shatur/neovim-session-manager", requires = "nvim-lua/plenary.nvim" }
-
   -- flutter
   use { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" }
 
@@ -98,10 +95,9 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -114,11 +110,14 @@ nvim_lsp.sumneko_lua.setup {
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
       },
     },
   },
 }
-
 
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
@@ -205,7 +204,12 @@ cmp.setup.cmdline(":", {
 -- https://github.com/ellisonleao/gruvbox.nvim
 
 require("gruvbox").setup {
-  italic = false,
+  italic = {
+    strings = false,
+    operators = false,
+    comments = false,
+    folds = false,
+  },
   invert_selection = true,
   contrast = "hard",
 }
@@ -357,6 +361,7 @@ require("flutter-tools").setup {
       virtual_text = false,
       virtual_text_str = "■",
     },
+    capabilities = capabilities,
     -- see the link below for details on each option:
     -- https://github.com/dart-lang/sdk/blob/master/pkg/analysis_server/tool/lsp_spec/README.md#client-workspace-configuration
     settings = {
@@ -448,20 +453,4 @@ require("nvim-tree").setup {
       },
     },
   },
-}
-
-
-----------------------------
--- neovim-session-manager --
-----------------------------
--- https://github.com/Shatur/neovim-session-manager
-
-require('session_manager').setup {
-  autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
-  autosave_last_session = true, -- Automatically save last session on exit and on session switch.
-  autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
-  autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
-    'gitcommit',
-  },
-  autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
 }
