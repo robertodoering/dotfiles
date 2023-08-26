@@ -67,61 +67,6 @@
         "statusBar.debuggingBackground": "#005f5f",
     },
 
-    // vim
-    "vim.useSystemClipboard": true,
-    "vim.highlightedyank.enable": true,
-    "vim.highlightedyank.color": "#d3869b66",
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-        "<C-w>": false,
-        "<C-b>": false,
-        "<C-f>": false,
-    },
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["<leader>", "c"],
-            "commands": ["editor.action.commentLine"],
-            "silent": true,
-        },
-        {
-            "before": ["<leader>", "f"],
-            "commands": ["editor.action.formatDocument"],
-            "silent": true,
-        },
-        {
-            "before": ["<C-u>"],
-            "after": ["2", "0", "k", "z", "z"],
-            "silent": true,
-        },
-        {
-            "before": ["<C-d>"],
-            "after": ["2", "0", "j", "z", "z"],
-            "silent": true,
-        },
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": ["<leader>", "c"],
-            "commands": ["editor.action.commentLine"],
-            "silent": true,
-        },
-        {
-            "before": ["<leader>", "s"],
-            "commands": ["editor.action.sortLinesAscending"],
-            "silent": true,
-        },
-        {
-            "before": ["<C-u>"],
-            "after": ["2", "0", "k", "z", "z"],
-            "silent": true,
-        },
-        {
-            "before": ["<C-d>"],
-            "after": ["2", "0", "j", "z", "z"],
-            "silent": true,
-        },
-    ],
-
     // dart & flutter
     "dart.closingLabels": false,
     "dart.debugExternalPackageLibraries": true,
