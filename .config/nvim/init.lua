@@ -1,9 +1,8 @@
 if vim.g.vscode then
-  require("options")
-  require("keymap")
-  vim.opt.showmode = true
-else
-  require("options")
-  require("keymap")
-  require("plugins")
+  require("vscode")
+  return
 end
+
+require("options")
+require("keymap")
+require("plugins")
