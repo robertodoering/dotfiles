@@ -1,10 +1,13 @@
 {
+    "debug.toolBarLocation": "commandCenter",
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.cursorSurroundingLines": 10,
+    "editor.bracketPairColorization.enabled": false,
+    "editor.cursorSurroundingLines": 0, // needed for vscode-neovim
     "editor.fontFamily": "'fira code',  'firacode nerd font', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 12.5,
     "editor.hover.delay": 600,
+    "editor.hover.hidingDelay":0,
     "editor.inlineSuggest.enabled": true,
     "editor.lineHeight": 1.28,
     "editor.minimap.enabled": false,
@@ -25,13 +28,17 @@
     "git.autoRepositoryDetection": false,
     "git.ignoreLimitWarning": true,
     "markdown.preview.scrollEditorWithPreview": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
     "search.followSymlinks": false,
     "security.workspace.trust.enabled": false,
     "security.workspace.trust.untrustedFiles": "open",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "window.customMenuBarAltFocus": false,
+    "window.density.editorTabHeight": "compact",
     "window.menuBarVisibility": "toggle",
     "window.restoreWindows": "none",
+    "workbench.editor.enablePreview": false,
     "workbench.editor.tabCloseButton": "off",
     "workbench.editor.tabSizing": "shrink",
     "workbench.editor.wrapTabs": true,
@@ -72,14 +79,14 @@
     "dart.debugExternalPackageLibraries": true,
     "dart.debugSdkLibraries": true,
     "dart.promptToGetPackages": false,
+    "dart.runPubGetOnPubspecChanges": "never",
     "dart.showInspectorNotificationsForWidgetErrors": false,
     "dart.showSkippedTests": false,
     "dart.warnWhenEditingFilesOutsideWorkspace": false,
-    "dart.runPubGetOnPubspecChanges": "never",
     "[dart]": {
         "editor.formatOnSave": true,
-        "editor.formatOnType": true,
         "editor.formatOnPaste": true,
+        "editor.formatOnType": true,
         "editor.rulers": [ 80 ],
         "editor.selectionHighlight": false,
         "editor.suggest.snippetsPreventQuickSuggestions": false,
@@ -87,10 +94,9 @@
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": false,
-        "editor.codeActionsOnSave": [
-            "source.organizeImports",
-            "source.fixAll",
-        ],
+        "editor.codeActionsOnSave":  {
+            "source.organizeImports": "explicit",
+        },
 
         "rewrap.autoWrap.enabled": true,
     },
@@ -98,7 +104,6 @@
     // rust
     "[rust]": {
         "editor.formatOnSave": true
-
     },
     "rust-analyzer.inlayHints.chainingHints.enable": false,
     "rust-analyzer.inlayHints.closingBraceHints.enable": false,
@@ -107,8 +112,23 @@
     "rust-analyzer.inlayHints.typeHints.enable": false,
 
     // extensions
-    "extensions.ignoreRecommendations": true,
     "cSpell.allowCompoundWords": true,
     "cSpell.diagnosticLevel": "Hint",
     "cSpell.language": "en,en-US",
+    "dart-data-o-matic.fromJson.enabled": false,
+    "dart-data-o-matic.fromMap.enabled": false,
+    "dart-data-o-matic.toJson.enabled": false,
+    "dart-data-o-matic.toMap.enabled": false,
+    "dart-data-o-matic.toString.enabled": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "extensions.ignoreRecommendations": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
 }

@@ -1,12 +1,3 @@
--------------
--- plugins --
--------------
-
-------------
--- packer --
-------------
--- https://github.com/hashicorp/packer
-
 local packer = require("packer")
 
 packer.init {
@@ -21,219 +12,112 @@ packer.init {
 }
 
 packer.startup(function()
-  -- package manager
   use "wbthomason/packer.nvim"
 
-  -- nvim lsp configuration
+  -- lsp
   use "neovim/nvim-lspconfig"
 
   -- treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
-  -- colorscheme
-  use "ellisonleao/gruvbox.nvim"
-
-  -- trim excess whitespaces on save
-  use "cappyzawa/trim.nvim"
+  -- flutter
+  use { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" }
 
   -- fuzzy finder
   use { "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" }
 
+  -- colorscheme
+  use "ellisonleao/gruvbox.nvim"
+
   -- statusline
   use "nvim-lualine/lualine.nvim"
-
-  -- git integration
-  use "lewis6991/gitsigns.nvim"
-
-  -- toggleable terminal
-  use "akinsho/nvim-toggleterm.lua"
 
   -- toggle comments
   use "terrortylor/nvim-comment"
 
   -- file tree
-  use { "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" }
+  use { "nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons" }
 
-  -- greeter
-  use { "goolord/alpha-nvim", requires = "kyazdani42/nvim-web-devicons" }
-
-  -- flutter
-  use { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" }
-
-  -- cmp autocomplete & snippets
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-cmdline"
-  use "L3MON4D3/LuaSnip"
-  use "saadparwaiz1/cmp_luasnip"
+  -- trim excess whitespaces on save
+  use "cappyzawa/trim.nvim"
 end)
 
 
-----------------
--- treesitter --
-----------------
+-- lsp
+-- https://github.com/neovim/nvim-lspconfig
+
+local lspconfig = require("lspconfig")
+
+lspconfig.dartls.setup {
+  closingLabels = false,
+  flutterOutline = false,
+
+  on_init = function(client)
+     client.config.settings.dart.analysisExcludedFolders = {
+      vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
+      -- path.join(flutter_sdk_path, "packages"),
+      -- path.join(flutter_sdk_path, ".pub-cache"),
+    }
+
+    client.notify("workspace/didChangeConfiguration", {
+      settings = client.config.settings,
+    })
+  end
+
+    -- analysisExcludedFolders = {
+    --   vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
+    -- },
+}
+
+-- lspconfig.lua_ls.setup {
+--   diagnostics = {
+--     globals = { "vim", "use" },
+--   },
+--   telemetry = {
+--     enable = false,
+--   },
+-- }
+
+
+-- treesitter
 -- https://github.com/nvim-treesitter/nvim-treesitter
 
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "lua", "rust", "c", "dart" },
+  compilers = { "gcc" },
+  ensure_installed = { "dart" },
   highlight = {
     enable = true,
   },
 }
 
 
----------
--- lsp --
----------
--- https://github.com/neovim/nvim-lspconfig
+-- flutter tools
+-- https://github.com/akinsho/flutter-tools.nvim
 
-local nvim_lsp = require("lspconfig")
-
-local on_attach = function(_, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-nvim_lsp.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = { 'vim', 'use' },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-      },
-      telemetry = {
-        enable = false,
+require("flutter-tools").setup {
+  lsp = {
+    settings = {
+      analysisExcludedFolders = {
+        vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
       },
     },
   },
 }
 
-nvim_lsp.rust_analyzer.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
 
-nvim_lsp.clangd.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
--------------------
--- cmp & luasnip --
--------------------
--- https://github.com/hrsh7th/nvim-cmp
-
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-
-require("luasnip.loaders.from_vscode").load({ paths = { "./snippets" } })
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-
-  mapping = {
-    ["<c-k>"] = cmp.mapping.select_prev_item(),
-    ["<c-j>"] = cmp.mapping.select_next_item(),
-    ["<c-l>"] = cmp.mapping.confirm(),
-
-    ["<up>"] = cmp.mapping.select_prev_item(),
-    ["<down>"] = cmp.mapping.select_next_item(),
-    ["<right>"] = cmp.mapping.confirm(),
-
-    ["<cr>"] = cmp.mapping.confirm { select = false },
-
-    ["<tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    ["<s-tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-  },
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-  }, {
-    { name = "buffer" },
-  }),
-}
-
-cmp.setup.cmdline("/", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = "buffer" }
-  }
-})
-
-cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = "path" }
-  }, {
-    { name = "cmdline" }
-  })
-})
-
-
------------------
--- colorscheme --
------------------
--- https://github.com/ellisonleao/gruvbox.nvim
-
-require("gruvbox").setup {
-  italic = {
-    strings = false,
-    operators = false,
-    comments = false,
-    folds = false,
-  },
-  invert_selection = true,
-  contrast = "hard",
-}
-
-vim.cmd("colorscheme gruvbox")
-
-
-----------
--- trim --
-----------
+-- trim
 -- https://github.com/cappyzawa/trim.nvim
 
 require("trim").setup {
   patterns = {
-    [[%s/\s\+$//e]], -- remove spaces at the end of each line
+    [[%s/\s\+$//e]],          -- remove spaces at the end of each line
     [[%s/\($\n\s*\)\+\%$//]], -- trim empty lines at the end
-    [[%s/\%^\n\+//]], -- trim empty lines at the start
+    [[%s/\%^\n\+//]],         -- trim empty lines at the start
   },
 }
 
 
----------------
--- telescope --
----------------
+-- telescope
 -- https://github.com/nvim-telescope/telescope.nvim
 
 local telescope_actions = require("telescope.actions")
@@ -252,28 +136,30 @@ require("telescope").setup {
   },
   pickers = {
     find_files = {
-      -- theme = "dropdown",
       hidden = true,
     },
-    -- oldfiles = {
-    --   theme = "dropdown",
-    -- },
-    -- buffers = {
-    --   theme = "dropdown",
-    -- },
-    -- lsp_document_symbols = {
-    --   theme = "dropdown",
-    -- },
-    -- git_status = {
-    --   theme = "dropdown",
-    -- }
   },
 }
 
 
--------------
--- lualine --
--------------
+-- colorscheme
+-- https://github.com/ellisonleao/gruvbox.nvim
+
+require("gruvbox").setup {
+  italic = {
+    strings = false,
+    operators = false,
+    comments = false,
+    folds = false,
+  },
+  invert_selection = true,
+  contrast = "hard",
+}
+
+vim.cmd("colorscheme gruvbox")
+
+
+-- lualine
 -- https://github.com/nvim-lualine/lualine.nvim
 
 local to_lower = function(str)
@@ -311,72 +197,7 @@ require("lualine").setup {
 }
 
 
---------------
--- gitsigns --
---------------
--- https://github.com/lewis6991/gitsigns.nvim
-
-require("gitsigns").setup {
-  signs = {
-    add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    delete = { hl = "GitSignsDelete", text = "-", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    topdelete = { hl = "GitSignsDelete", text = "-", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-  },
-}
-
-
-----------------
--- toggleterm --
-----------------
--- https://github.com/akinsho/toggleterm.nvim
-
-require("toggleterm").setup {
-  open_mapping = [[<c-\>]],
-  shade_terminals = false,
-}
-
-
--------------------
--- flutter-tools --
--------------------
--- https://github.com/akinsho/flutter-tools.nvim
-
-require("flutter-tools").setup {
-  ui = {
-    border = "none",
-  },
-  widget_guides = {
-    enabled = true,
-  },
-  closing_tags = {
-    enabled = false,
-  },
-  lsp = {
-    color = {
-      enabled = true,
-      background = true,
-      foreground = false,
-      virtual_text = false,
-      virtual_text_str = "■",
-    },
-    capabilities = capabilities,
-    -- see the link below for details on each option:
-    -- https://github.com/dart-lang/sdk/blob/master/pkg/analysis_server/tool/lsp_spec/README.md#client-workspace-configuration
-    settings = {
-      showTodos = false,
-      completeFunctionCalls = true,
-      renameFilesWithClasses = "prompt",
-      enableSnippets = true,
-    }
-  }
-}
-
-
--------------
--- comment --
--------------
+-- comment
 -- https://github.com/terrortylor/nvim-comment
 
 require("nvim_comment").setup {
@@ -390,14 +211,31 @@ require("nvim_comment").setup {
 }
 
 
----------------
 -- nvim-tree --
----------------
 -- https://github.com/kyazdani42/nvim-tree.lua
 
+-- disable netrw
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
+
+local function nvim_tree_on_attach(bufnr)
+  local api = require("nvim-tree.api")
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', 'l', api.node.open.edit,
+    { buffer = bufnr, noremap = true, silent = true, nowait = true })
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close,
+    { buffer = bufnr, noremap = true, silent = true, nowait = true })
+end
+
 require("nvim-tree").setup {
+  on_attach = nvim_tree_on_attach,
+
   reload_on_bufenter = true,
-  hijack_cursor = true, -- keep cursor on first letter of file name
+  hijack_cursor = true,      -- keep cursor on first letter of file name
 
   sync_root_with_cwd = true, -- update tree root when cwd changes
 
@@ -446,11 +284,5 @@ require("nvim-tree").setup {
 
   view = {
     signcolumn = "no", -- no sign column on the left
-    mappings = {
-      list = {
-        { key = { "l", "<cr>", "o" }, cb = require("nvim-tree.config").nvim_tree_callback("edit") },
-        { key = "h", cb = require("nvim-tree.config").nvim_tree_callback("close_node") },
-      },
-    },
   },
 }
