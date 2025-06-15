@@ -1,0 +1,29 @@
+#!/bin/sh
+
+alias ls="ls -la"
+
+alias grep="grep --color=auto"
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+
+# pacman / paru
+alias orphans="pacman -Qdtq"
+alias remove-orphans="pacman -Qdtq | doas pacman -Rns"
+alias clear-cache="paru -Scc"
+
+# git
+alias g="git"
+alias gs="git status"
+alias ga="git commit -a"
+
+# flutter
+alias fget="flutter pub get"
+alias frun="dart run build_runner build --delete-conflicting-outputs"
+alias fwatch="dart run build_runner watch --delete-conflicting-outputs"
+
+# misc
+alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias untar="tar -xf"
