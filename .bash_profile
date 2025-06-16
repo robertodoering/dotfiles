@@ -8,6 +8,10 @@ PATH="$PATH:$HOME/.local/bin/"
 
 export EDITOR="nvim"
 
+# colorful man pages
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+
+
 # ~
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"

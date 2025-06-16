@@ -1,3 +1,27 @@
+@import "colors.css";
+
+@define-color waybar-bg     alpha(@bg, .8);
+@define-color waybar-fg     @fg;
+@define-color waybar-border alpha(@fg, .5);
+
+@define-color tooltip-bg     @bg;
+@define-color tooltip-fg     @waybar-fg;
+@define-color tooltip-border @waybar-border;
+
+@define-color workspaces-fg        @fg;
+@define-color workspaces-active-bg @purple1;
+@define-color workspaces-active-fg @fg;
+@define-color workspaces-empty-fg  @waybar-border;
+
+@define-color module-border @fg;
+
+@define-color battery-charging-bg @green1;
+@define-color battery-charging-fg @fg;
+@define-color battery-warning-bg  @orange1;
+@define-color battery-warning-fg  @fg;
+@define-color battery-critical-bg @red1;
+@define-color battery-critical-fg @fg;
+
 * {
     font-family: monospace;
     font-size: 11px;
@@ -11,59 +35,56 @@
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 1px solid rgba(100, 114, 125, 0.5);
-    color: white;
+    color: @waybar-fg;
+    background: @waybar-bg;
+    border-bottom: 1px solid @waybar-border;
 }
 
 tooltip {
-  background: rgba(43, 48, 59, 0.5);
-  border: 1px solid rgba(100, 114, 125, 0.5);
+  background: @tooltip-bg;
+  border: 1px solid @tooltip-border;
 }
 
 tooltip label {
-  color: white;
+  color: @tooltip-fg;
 }
 
 #workspaces button {
-    color: white;
+    color: @workspaces-fg;
     min-width: 26px;
     border-bottom: 1px solid transparent;
 }
 
 #workspaces button.empty {
-    color: rgba(100, 114, 125, 0.5);
+    color: @workspaces-empty-fg;
 }
 
 #workspaces button.active {
-    background: #64727D;
-    border-bottom: 1px solid white;
-    color: white;
+    color: @workspaces-active-fg;
+    background: @workspaces-active-bg;
+    border-bottom: 1px solid @module-border;
 }
 
+
 #mpd, #pulseaudio, #network, #power-profiles-daemon, #cpu, #memory, #temperature, #backlight, #keyboard-state, #language, #battery, #clock, #tray {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid @module-border;
     padding: 0 4px;
 }
 
-#battery, #clock {
+#battery.charging {
+    color: @battery-charging-fg;
+    background-color: @battery-charging-bg;
     padding: 0 8px;
 }
 
-#clock {
-    background-color: #64727D;
-}
-
-#battery {
-    color: white;
-}
-
-#battery.charging {
-    color: white;
-    background-color: #26A65B;
-}
-
 #battery.warning:not(.charging) {
-    color: white;
-    background: #f53c3c;
+    color: @battery-warning-fg;
+    background: @battery-warning-bg;
+    padding: 0 8px;
+}
+
+#battery.critical:not(.charging) {
+    color: @battery-critical-fg;
+    background: @battery-critical-bg;
+    padding: 0 8px;
 }

@@ -68,11 +68,11 @@
             "weeks-pos"     : "left",
             "on-scroll"     : 1,
             "format": {
-                "months":     "<span color='#ffead3'>{}</span>",
-                "days":       "<span color='#ecc6d9'>{}</span>",
-                "weeks":      "<span color='#99ffdd'><i>{}</i></span>",
-                "weekdays":   "<span color='#ffcc66'>{}</span>",
-                "today":      "<span color='#ff6699'><b>{}</b></span>"
+                "months":     "<span color='#fe9019'>{}</span>",
+                "weekdays":   "<span color='#fabd2f'>{}</span>",
+                "weeks":      "<span color='#8ec07c'><i>{}</i></span>",
+                "days":       "<span color='#d3869b'>{}</span>",
+                "today":      "<span color='#fb4934'><b>{}</b></span>"
             }
         },
         "actions":  {
@@ -103,7 +103,7 @@
     },
     "battery": {
         "states": {
-            "warning": 30,
+            "warning": 35,
             "critical": 15
         },
         "format": "{icon} {capacity}% ",
