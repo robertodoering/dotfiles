@@ -1,12 +1,16 @@
 @import "colors.css";
 
-@define-color waybar-bg     alpha(@bg, .8);
 @define-color waybar-fg     @fg;
+@define-color waybar-bg     alpha(@bg, .8);
 @define-color waybar-border alpha(@fg, .5);
 
-@define-color tooltip-bg     @bg;
 @define-color tooltip-fg     @waybar-fg;
+@define-color tooltip-bg     @bg;
 @define-color tooltip-border @waybar-border;
+
+@define-color tray-menu-fg     @tooltip-fg;
+@define-color tray-menu-bg     @tooltip-bg;
+@define-color tray-menu-border @tooltip-border;
 
 @define-color workspaces-fg        @fg;
 @define-color workspaces-active-bg @purple1;
@@ -15,12 +19,12 @@
 
 @define-color module-border @fg;
 
-@define-color battery-charging-bg @green1;
 @define-color battery-charging-fg @fg;
-@define-color battery-warning-bg  @orange1;
+@define-color battery-charging-bg @green1;
 @define-color battery-warning-fg  @fg;
-@define-color battery-critical-bg @red1;
+@define-color battery-warning-bg  @orange1;
 @define-color battery-critical-fg @fg;
+@define-color battery-critical-bg @red1;
 
 * {
     font-family: monospace;
@@ -32,6 +36,8 @@
     border-radius: 0;
     padding: 0;
     min-height: 0;
+    text-shadow: none;
+    box-shadow: none;
 }
 
 window#waybar {
@@ -41,12 +47,18 @@ window#waybar {
 }
 
 tooltip {
-  background: @tooltip-bg;
-  border: 1px solid @tooltip-border;
+    background: @tooltip-bg;
+    border: 1px solid @tooltip-border;
 }
 
 tooltip label {
-  color: @tooltip-fg;
+    color: @tooltip-fg;
+}
+
+#tray menu {
+    color: @tray-menu-fg;
+    background: @tray-menu-bg;
+    border: 1px solid @tray-menu-border;
 }
 
 #workspaces button {
@@ -65,8 +77,12 @@ tooltip label {
     border-bottom: 1px solid @module-border;
 }
 
+#workspaces button:hover {
+    border-bottom: 1px solid @module-border;
+    border-top: none;
+}
 
-#mpd, #pulseaudio, #network, #power-profiles-daemon, #cpu, #memory, #temperature, #backlight, #keyboard-state, #language, #battery, #clock, #tray {
+#mpd, #pulseaudio, #network, #power-profiles-daemon, #cpu, #memory, #temperature, #backlight, #keyboard-state, #battery, #clock, #tray {
     border-bottom: 1px solid @module-border;
     padding: 0 4px;
 }

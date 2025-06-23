@@ -16,7 +16,7 @@ alias rm="rm -i"
 
 # pacman / paru
 alias orphans="pacman -Qdtq"
-alias remove-orphans="pacman -Qdtq | doas pacman -Rns"
+alias remove-orphans="pacman -Qdtq | sudo pacman -Rns -"
 alias clear-cache="paru -Scc"
 
 # git
@@ -32,3 +32,5 @@ alias fwatch="dart run build_runner watch --delete-conflicting-outputs"
 # misc
 alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias untar="tar -xf"
+alias vscodium="vscodium --ozone-platform=wayland"
+alias codium="codium --ozone-platform=wayland"

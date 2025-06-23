@@ -5,6 +5,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 PATH="$PATH:$HOME/.local/bin/"
+PATH="$PATH:$HOME/.local/share/flutter/bin"
 
 export EDITOR="nvim"
 

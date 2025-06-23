@@ -4,10 +4,10 @@
     "spacing": 12,
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/window"
     ],
     "modules-right": [
         "mpd",
@@ -19,7 +19,6 @@
         "temperature",
         "backlight",
         "keyboard-state",
-        "hyprland/language",
         "battery",
         "clock",
         "tray"
