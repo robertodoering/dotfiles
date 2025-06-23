@@ -13,7 +13,7 @@
 @define-color tray-menu-border @tooltip-border;
 
 @define-color workspaces-fg        @fg;
-@define-color workspaces-active-bg @purple1;
+@define-color workspaces-active-bg @red1;
 @define-color workspaces-active-fg @fg;
 @define-color workspaces-empty-fg  @waybar-border;
 
